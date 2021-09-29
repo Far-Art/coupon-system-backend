@@ -77,16 +77,12 @@ public class PushDataForTest implements CommandLineRunner {
             companies.add(companyGenerator.generate());
         }
 
-        Admin admin = Admin.builder().email("admin@admin.com").firstName("Artur").lastName("Farmanov")
-                .department("Software").levelOfAccess(2).password("Admin123").build();
-
         customerRepository.saveAll(customers);
 
         companyRepository.saveAll(companies);
 
         couponRepository.saveAll(coupons);
 
-        adminRepository.save(admin);
 
         System.out.println("Dummy Data pushed to DB");
 

@@ -6,6 +6,7 @@ import com.fa.CouponsMsProject.dto.ClientDto;
 import com.fa.CouponsMsProject.exceptions.CustomException;
 import com.fa.CouponsMsProject.exceptions.SecurityException;
 import com.fa.CouponsMsProject.facades.ClientFacade;
+import com.fa.CouponsMsProject.facades.impl.AdminFacadeImpl;
 import com.fa.CouponsMsProject.mappers.ClientModelMapper;
 import com.fa.CouponsMsProject.mappers.CouponModelMapper;
 import com.fa.CouponsMsProject.model.request.ClientLoginRequestModel;
@@ -79,5 +80,10 @@ public class ClientController {
     @PutMapping("extendtoken")
     public ResponseEntity<Boolean> extendToken(@RequestHeader("authorization") String token) throws SecurityException {
         return new ResponseEntity<>(accessManager.clientMadeAction(token), HttpStatus.OK) ;
+    }
+
+    @PutMapping("initData/{numofcustomers}/{numofcompanies}")
+    public ResponseEntity<String> initData(@RequestHeader("authorization") String token, @RequestHeader("clientType") ClientType clientType, @PathVariable int numofcustomers, @PathVariable int numofcompanies) throws SecurityException {
+        return new ResponseEntity<String>(((AdminFacadeImpl) accessManager.getSession(token, clientType, ClientType.ADMIN)).initData(numofcustomers, numofcompanies), HttpStatus.OK);
     }
 }

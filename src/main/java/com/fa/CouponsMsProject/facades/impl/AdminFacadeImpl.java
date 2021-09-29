@@ -3,17 +3,21 @@ package com.fa.CouponsMsProject.facades.impl;
 import com.fa.CouponsMsProject.aop.EmailValidate;
 import com.fa.CouponsMsProject.beans.*;
 import com.fa.CouponsMsProject.exceptions.CustomException;
-import com.fa.CouponsMsProject.repositories.AdminRepository;
-import com.fa.CouponsMsProject.repositories.CompanyRepository;
-import com.fa.CouponsMsProject.repositories.CouponRepository;
-import com.fa.CouponsMsProject.repositories.CustomerRepository;
+import com.fa.CouponsMsProject.exceptions.SecurityException;
+import com.fa.CouponsMsProject.repositories.*;
 import com.fa.CouponsMsProject.facades.AdminFacade;
 import com.fa.CouponsMsProject.facades.ClientFacade;
+import com.fa.CouponsMsProject.utils.CategoryToString;
+import com.fa.CouponsMsProject.utils.generators.ClientNameGenerator;
+import com.fa.CouponsMsProject.utils.generators.CompanyGenerator;
+import com.fa.CouponsMsProject.utils.generators.EmailGenerator;
+import com.fa.CouponsMsProject.utils.generators.PasswordGenerator;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldNameConstants.Exclude;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -35,6 +39,12 @@ public class AdminFacadeImpl extends ClientFacade implements AdminFacade {
 
 	@Exclude
 	private final AdminRepository adminRepository;
+
+	@Exclude
+	private final CompanyGenerator companyGenerator;
+
+	@Exclude
+	private final CategoryRepository categoryRepository;
 
 	@Override
 	public Client getClient() {
@@ -179,6 +189,50 @@ public class AdminFacadeImpl extends ClientFacade implements AdminFacade {
 	@Override
 	public Admin getMyInfo() {
 		return adminRepository.findById(admin.getId()).get();
+	}
+
+	public String initData(int numOfCustomers, int numOfCompanies) throws SecurityException {
+		if(admin.getLevelOfAccess() < 2){
+			throw new SecurityException("Your level of access is insufficient, need at least 2");
+		}
+
+		System.out.println("Dummy Data being pushed to DB, this may take some while...");
+
+		List<Customer> customers = new ArrayList<>();
+		List<Company> companies = new ArrayList<>();
+		List<Coupon> coupons = new ArrayList<>();
+
+		for (int i = 0; i < numOfCustomers; i++) {
+			// add specific customer
+			if (i == 0) {
+				customers.add(
+						Customer.builder()
+								.firstName("Artur")
+								.lastName("Farmanov")
+								.email("arturfarmanov91@gmail.com")
+								.password("1234aA")
+								.build());
+			}
+			// add random customer
+			customers.add(
+					Customer.builder().firstName(ClientNameGenerator.getName()).lastName(ClientNameGenerator.getName())
+							.email(EmailGenerator.generateEmail(ClientNameGenerator.getSameName()))
+							.password(PasswordGenerator.getPassword()).build());
+		}
+		// add random company
+		for (int i = 0; i < numOfCompanies ; i++) {
+			companies.add(companyGenerator.generate());
+		}
+
+		customerRepository.saveAll(customers);
+
+		companyRepository.saveAll(companies);
+
+		couponRepository.saveAll(coupons);
+
+		categoryRepository.saveAll(CategoryToString.getAllCategories(false));
+
+		return "Dummy Data pushed to DB";
 	}
 
 	private void validateCustomer(Customer customer) throws CustomException {
