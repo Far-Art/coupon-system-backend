@@ -68,11 +68,6 @@ public class AdminFacadeImpl extends ClientFacade implements AdminFacade {
 	@EmailValidate
 	public void addCompany(Company company) throws CustomException {
 
-		if (companyRepository.existsById(company.getId())) {
-			throw new CustomException(
-					"Company with name(" + company.getName() + ") or email(" + company.getEmail() + ") already exist");
-		}
-
 		/* check if such company exist by name */
 		if (companyRepository.existsByName(company.getName())) {
 			throw new CustomException("Company with name(" + company.getName() + ") already exist");
@@ -88,6 +83,7 @@ public class AdminFacadeImpl extends ClientFacade implements AdminFacade {
 	@EmailValidate
 	public void updateCompany(Company company) throws CustomException {
 
+		/* check if such company exist */
 		if (!companyRepository.existsById(company.getId())) {
 			throw new CustomException("Such company not found");
 		}
@@ -272,7 +268,6 @@ public class AdminFacadeImpl extends ClientFacade implements AdminFacade {
 	}
 
 	private void validateCompany(Company company) throws CustomException {
-		/* check if such company exist */
 		if (company.getName().length() < 2){
 			throw new CustomException("Companies name must include at least 2 characters");
 		} else if (company.getName().length() > 200){
