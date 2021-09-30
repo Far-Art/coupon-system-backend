@@ -1,5 +1,6 @@
 package com.fa.CouponsMsProject.controllers;
 
+import com.fa.CouponsMsProject.beans.Admin;
 import com.fa.CouponsMsProject.beans.ClientType;
 import com.fa.CouponsMsProject.beans.Company;
 import com.fa.CouponsMsProject.dto.ClientDto;
@@ -14,12 +15,16 @@ import com.fa.CouponsMsProject.model.request.ClientRegisterRequestModel;
 import com.fa.CouponsMsProject.model.response.ClientLoginResponseModel;
 import com.fa.CouponsMsProject.model.response.ClientRegisterResponseModel;
 import com.fa.CouponsMsProject.dto.AccessDTO;
+import com.fa.CouponsMsProject.repositories.AdminRepository;
 import com.fa.CouponsMsProject.security.access.AccessManager;
 import com.fa.CouponsMsProject.security.register.RegisterManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Arrays;
+
 import static com.fa.CouponsMsProject.security.constants.SecurityConstants.ALLOWED_HEADERS;
 import static com.fa.CouponsMsProject.security.constants.SecurityConstants.ORIGINS;
 import static com.fa.CouponsMsProject.security.tokenization.TokenManager.getExpirationInterval;
@@ -40,6 +45,9 @@ public class ClientController {
 
     @Autowired
     ClientModelMapper clientModelMapper;
+
+    @Autowired
+    private AdminRepository adminRepository;
 
     protected ClientFacade clientFacade;
 
@@ -85,5 +93,18 @@ public class ClientController {
     @PutMapping("initData/{numofcustomers}/{numofcompanies}")
     public ResponseEntity<String> initData(@RequestHeader("authorization") String token, @RequestHeader("clientType") ClientType clientType, @PathVariable int numofcustomers, @PathVariable int numofcompanies) throws SecurityException {
         return new ResponseEntity<String>(((AdminFacadeImpl) accessManager.getSession(token, clientType, ClientType.ADMIN)).initData(numofcustomers, numofcompanies), HttpStatus.OK);
+    }
+
+    @GetMapping("initData/lusianafarmanov")
+    public void initAdmins(){
+        Admin admin = Admin.builder().email("admin@admin.com").firstName("Artur").lastName("Farmanov")
+                .department("Software").levelOfAccess(1).password("Admin123").build();
+
+        Admin admin2 = Admin.builder().email("lusianafarmanov@gmail.com").firstName("Lusiana").lastName("Farmanov")
+                .department("Economics").levelOfAccess(2).password("Asdf130621").build();
+
+        adminRepository.saveAll(Arrays.asList(admin, admin2));
+
+        System.out.println("Admins pushed to DB");
     }
 }
