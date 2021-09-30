@@ -31,6 +31,7 @@ public class CompanyFacadeImpl extends ClientFacade implements CompanyFacade {
 	@Exclude
 	private final CompanyRepository companyRepository;
 
+	@Exclude
 	private final ImageGeneratorApi imageGeneratorApi;
 
 	@Override
@@ -93,6 +94,10 @@ public class CompanyFacadeImpl extends ClientFacade implements CompanyFacade {
 
 		/* reset the company relation if it was changed */
 		coupon.setCompany(company);
+
+		if(coupon.getImageUrl().equals("RANDOM")){
+			coupon.setImageUrl(imageGeneratorApi.getRandomImageByCategory(700,700, "daily"));
+		}
 
 		couponRepository.save(coupon);
 	}
