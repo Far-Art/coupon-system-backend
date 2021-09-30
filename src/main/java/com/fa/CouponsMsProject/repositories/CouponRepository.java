@@ -38,7 +38,7 @@ public interface CouponRepository extends JpaRepository<Coupon, Long> {
 	
 	@Modifying
 	@Transactional
-	@Query(value = "DELETE FROM coupons_ms_spring.customers_coupons WHERE `customer_id`=?;", nativeQuery = true)
+	@Query(value = "DELETE FROM couponasart_ms_spring.customers_coupons WHERE `customer_id`=?;", nativeQuery = true)
 	void deleteAllRelations(@Param("customer_id") long customerId);
 
 }
