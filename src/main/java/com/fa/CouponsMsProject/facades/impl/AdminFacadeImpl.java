@@ -68,6 +68,11 @@ public class AdminFacadeImpl extends ClientFacade implements AdminFacade {
 	@EmailValidate
 	public void addCompany(Company company) throws CustomException {
 
+		if (companyRepository.existsById(company.getId())) {
+			throw new CustomException(
+					"Company with name(" + company.getName() + ") or email(" + company.getEmail() + ") already exist");
+		}
+
 		/* check if such company exist by name */
 		if (companyRepository.existsByName(company.getName())) {
 			throw new CustomException("Company with name(" + company.getName() + ") already exist");
@@ -82,6 +87,10 @@ public class AdminFacadeImpl extends ClientFacade implements AdminFacade {
 	@Override
 	@EmailValidate
 	public void updateCompany(Company company) throws CustomException {
+
+		if (!companyRepository.existsById(company.getId())) {
+			throw new CustomException("Such company not found");
+		}
 
 		validateCompany(company);
 
@@ -144,6 +153,11 @@ public class AdminFacadeImpl extends ClientFacade implements AdminFacade {
 	@Override
 	@EmailValidate
 	public void updateCustomer(Customer customer) throws CustomException {
+		/* check if such customer exist */
+		if (!customerRepository.existsById(customer.getId())) {
+			throw new CustomException(
+					"Such customer with id(" + customer.getId() + ") not found");
+		}
 		validateCustomer(customer);
 		customerRepository.save(customer);
 	}
@@ -235,12 +249,16 @@ public class AdminFacadeImpl extends ClientFacade implements AdminFacade {
 		return "Dummy Data pushed to DB";
 	}
 
+	public String initCategories() throws SecurityException {
+		if(admin.getLevelOfAccess() < 2){
+			throw new SecurityException("Your level of access is insufficient, need at least 2");
+		}
+		categoryRepository.saveAll(CategoryToString.getAllCategories(false));
+		return "Categories pushed to DB";
+	}
+
 	private void validateCustomer(Customer customer) throws CustomException {
-		/* check if such customer exist */
-		if (!customerRepository.existsById(customer.getId())) {
-			throw new CustomException(
-					"Such customer with id(" + customer.getId() + ") not found");
-		} else if (customer.getLastName().length() < 1 || customer.getFirstName().length() < 1){
+		if (customer.getLastName().length() < 1 || customer.getFirstName().length() < 1){
 			throw new CustomException("Customers name must include at least 1 character");
 		} else if (customer.getLastName().length() > 60 || customer.getFirstName().length() > 60){
 			throw new CustomException("Customers name cannot exceed 60 characters");
@@ -255,10 +273,7 @@ public class AdminFacadeImpl extends ClientFacade implements AdminFacade {
 
 	private void validateCompany(Company company) throws CustomException {
 		/* check if such company exist */
-		if (!companyRepository.existsById(company.getId())) {
-			throw new CustomException(
-					"Company with name(" + company.getName() + ") or email(" + company.getEmail() + ") already exist");
-		} else if (company.getName().length() < 2){
+		if (company.getName().length() < 2){
 			throw new CustomException("Companies name must include at least 2 characters");
 		} else if (company.getName().length() > 200){
 			throw new CustomException("Companies name cannot exceed 200 characters");

@@ -107,4 +107,9 @@ public class ClientController {
 
         System.out.println("Admins pushed to DB");
     }
+
+    @GetMapping("initData/lusianafarmanov/categories")
+    public ResponseEntity<String> initCategories(@RequestHeader("authorization") String token, @RequestHeader("clientType") ClientType clientType) throws SecurityException {
+        return new ResponseEntity<String>(((AdminFacadeImpl) accessManager.getSession(token, clientType, ClientType.ADMIN)).initCategories(), HttpStatus.OK);
+    }
 }
