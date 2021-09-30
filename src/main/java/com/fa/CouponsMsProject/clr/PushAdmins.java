@@ -27,7 +27,19 @@ public class PushAdmins implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        if(!adminRepository.existsByEmail("admin@admin.com") && !adminRepository.existsByEmail("lusianafarmanov@gmail.com")){
+        try {
+            if(!adminRepository.existsByEmail("admin@admin.com") && !adminRepository.existsByEmail("lusianafarmanov@gmail.com")){
+                Admin admin = Admin.builder().email("admin@admin.com").firstName("Artur").lastName("Farmanov")
+                        .department("Software").levelOfAccess(1).password("Admin123").build();
+
+                Admin admin2 = Admin.builder().email("lusianafarmanov@gmail.com").firstName("Lusiana").lastName("Farmanov")
+                        .department("Economics").levelOfAccess(2).password("Asdf130621").build();
+
+                adminRepository.saveAll(Arrays.asList(admin, admin2));
+
+                System.out.println("Admins pushed to DB");
+            }
+        } catch (Exception e){
             Admin admin = Admin.builder().email("admin@admin.com").firstName("Artur").lastName("Farmanov")
                     .department("Software").levelOfAccess(1).password("Admin123").build();
 
@@ -38,5 +50,6 @@ public class PushAdmins implements CommandLineRunner {
 
             System.out.println("Admins pushed to DB");
         }
+
     }
 }
