@@ -1,0 +1,18 @@
+{
+  "short_name": "Coupons As Art",
+  "name": "Coupons As Art",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "favicon.svg",
+      "type": "image/png"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
