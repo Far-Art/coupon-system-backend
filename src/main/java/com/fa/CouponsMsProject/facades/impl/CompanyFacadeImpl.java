@@ -79,7 +79,7 @@ public class CompanyFacadeImpl extends ClientFacade implements CompanyFacade {
 
 		/* check if such coupon exist in database */
 		if (!couponRepository.existsByCompanyAndId(company, coupon.getId())) {
-			throw new CustomException("You dont possess coupon with id(" + coupon.getId() + ")");
+			throw new CustomException("You don't possess coupon with id(" + coupon.getId() + ")");
 		}
 
 		couponValidation(coupon);
