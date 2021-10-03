@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/static/css/main.2dbc5336.chunk.css",
-    "main.js": "/static/js/main.40b93445.chunk.js",
-    "main.js.map": "/static/js/main.40b93445.chunk.js.map",
+    "main.css": "/static/css/main.54755e9f.chunk.css",
+    "main.js": "/static/js/main.eb649be5.chunk.js",
+    "main.js.map": "/static/js/main.eb649be5.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.3df34320.js",
     "runtime-main.js.map": "/static/js/runtime-main.3df34320.js.map",
     "static/css/2.0975cee1.chunk.css": "/static/css/2.0975cee1.chunk.css",
@@ -12,7 +12,7 @@
     "static/js/3.68303b00.chunk.js.map": "/static/js/3.68303b00.chunk.js.map",
     "index.html": "/index.html",
     "static/css/2.0975cee1.chunk.css.map": "/static/css/2.0975cee1.chunk.css.map",
-    "static/css/main.2dbc5336.chunk.css.map": "/static/css/main.2dbc5336.chunk.css.map",
+    "static/css/main.54755e9f.chunk.css.map": "/static/css/main.54755e9f.chunk.css.map",
     "static/js/2.6a9a2bcd.chunk.js.LICENSE.txt": "/static/js/2.6a9a2bcd.chunk.js.LICENSE.txt",
     "static/media/GlobalStyles.css": "/static/media/IconBG.d9e19aae.png",
     "static/media/logo-bordo.9a59480f.svg": "/static/media/logo-bordo.9a59480f.svg",
@@ -22,7 +22,7 @@
     "static/js/runtime-main.3df34320.js",
     "static/css/2.0975cee1.chunk.css",
     "static/js/2.6a9a2bcd.chunk.js",
-    "static/css/main.2dbc5336.chunk.css",
-    "static/js/main.40b93445.chunk.js"
+    "static/css/main.54755e9f.chunk.css",
+    "static/js/main.eb649be5.chunk.js"
   ]
 }
