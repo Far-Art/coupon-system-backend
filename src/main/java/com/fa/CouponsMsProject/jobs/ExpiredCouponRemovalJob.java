@@ -9,9 +9,9 @@ import org.springframework.stereotype.Component;
 import java.sql.Date;
 import java.util.Set;
 
-import static com.fa.CouponsMsProject.config.ApplicationConfig.EXPIRED_COUPONS_REMOVAL_JOB_INTERVAL_MILLIS;
+import static com.fa.CouponsMsProject.config.ApplicationConfig.DAILY_INTERVAL;
 
-@Component
+//@Component
 @RequiredArgsConstructor
 public class ExpiredCouponRemovalJob {
 
@@ -21,7 +21,7 @@ public class ExpiredCouponRemovalJob {
 
 	private final CouponRepository couponRepository;
 
-	@Scheduled(initialDelay = 30000, fixedRate = EXPIRED_COUPONS_REMOVAL_JOB_INTERVAL_MILLIS)
+	@Scheduled(initialDelay = 30000, fixedRate = DAILY_INTERVAL)
 	public void runExpiredCouponsRemoval() {
 		dateNow = new Date(new java.util.Date().getTime());
 		fetchExpiredCoupons(dateNow);

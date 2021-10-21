@@ -13,7 +13,7 @@ public class ApplicationConfig {
     public static final int IDLE_LOGIN_TIMEOUT_INTERVAL_MINUTES = 30;
 
     /* interval to run expired coupons removal job */
-    public static final long EXPIRED_COUPONS_REMOVAL_JOB_INTERVAL_MILLIS = 86_400_000;
+    public static final long DAILY_INTERVAL = 86_400_000;
 
     /* interval to run expired session removal job */
     public static final long EXPIRED_SESSION_REMOVAL_JOB_INTERVAL_MILLIS = IDLE_LOGIN_TIMEOUT_INTERVAL_MINUTES * 60_000;
