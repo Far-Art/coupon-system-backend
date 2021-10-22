@@ -12,7 +12,7 @@ public class ImageGeneratorApi {
 
     public String getRandomImageByCategory(int height, int width, String category) {
         try {
-            Thread.sleep(400); // make thread sleep to prevent requests burst
+            Thread.sleep(250); // make thread sleep to prevent requests burst
         } catch (InterruptedException e) {
         }
         String randomImageUrl = String.format("https://source.unsplash.com/%sx%s/?%s", width, height, category);

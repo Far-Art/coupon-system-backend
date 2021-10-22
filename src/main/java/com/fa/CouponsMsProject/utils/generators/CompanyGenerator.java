@@ -18,7 +18,7 @@ public class CompanyGenerator {
     @Autowired
     private ImageGeneratorApi imageGeneratorApi;
 
-    private static final int COUPONS_PER_COMPANY = 8;
+    private static final int COUPONS_PER_COMPANY = 6;
 
     private static Category companyProfile = null;
 
@@ -110,10 +110,10 @@ public class CompanyGenerator {
                         couponCategory = "spa";
                         break;
                     case 1:
-                        couponCategory = "spa,relax";
+                        couponCategory = "relax";
                         break;
                     case 2:
-                        couponCategory = "spa,enjoy";
+                        couponCategory = "enjoy";
                         break;
                 }
                 break;
@@ -123,10 +123,10 @@ public class CompanyGenerator {
                         couponCategory = "household";
                         break;
                     case 1:
-                        couponCategory = "house,household";
+                        couponCategory = "house";
                         break;
                     case 2:
-                        couponCategory = "house,fix";
+                        couponCategory = "fix";
                         break;
                 }
                 break;
@@ -178,7 +178,7 @@ public class CompanyGenerator {
                         couponCategory = "hiking";
                         break;
                     case 2:
-                        couponCategory = "mountain,climb";
+                        couponCategory = "climb";
                         break;
                 }
                 break;
@@ -188,7 +188,7 @@ public class CompanyGenerator {
                         couponCategory = "retro,car";
                         break;
                     case 1:
-                        couponCategory = "garage,var";
+                        couponCategory = "garage,car";
                         break;
                     case 2:
                         couponCategory = "car";
@@ -226,7 +226,7 @@ public class CompanyGenerator {
         for (int i = 0; i < COUPONS_PER_COMPANY; i++) {
             Coupon coupon = couponsGenerator.getCoupon(companyProfile);
             coupon.setTitle(coupon.getTitle() + " " + (i + 1));
-            coupon.setImageUrl(imageGeneratorApi.getRandomImageByCategory(700,700, couponCategory));
+            coupon.setImageUrl(imageGeneratorApi.getRandomImageByCategory(300,300, couponCategory));
             company.addCoupon(coupon);
         }
         companyProfile = null; // reset profile
