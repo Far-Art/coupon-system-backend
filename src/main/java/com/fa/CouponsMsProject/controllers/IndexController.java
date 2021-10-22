@@ -12,15 +12,16 @@ import static com.fa.CouponsMsProject.security.constants.SecurityConstants.ORIGI
 @CrossOrigin(origins = ORIGINS, allowedHeaders = ALLOWED_HEADERS)
 public class IndexController implements ErrorController {
 
-    private static final String PATH = "/*";
+    private static final String PATH = "/error";
 
-    @RequestMapping(value = PATH)
+//    @RequestMapping(value = PATH)
+    @RequestMapping(value = "/*")
     public ModelAndView saveLeadQuery() {
         return new ModelAndView("forward:/");
     }
 
     @Override
     public String getErrorPath() {
-        return "/";
+        return PATH;
     }
 }
