@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/static/css/main.9f34753c.chunk.css",
+    "main.js": "/static/js/main.e06586b1.chunk.js",
+    "main.js.map": "/static/js/main.e06586b1.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.df6387cb.js",
+    "runtime-main.js.map": "/static/js/runtime-main.df6387cb.js.map",
+    "static/css/2.0975cee1.chunk.css": "/static/css/2.0975cee1.chunk.css",
+    "static/js/2.ab656483.chunk.js": "/static/js/2.ab656483.chunk.js",
+    "static/js/2.ab656483.chunk.js.map": "/static/js/2.ab656483.chunk.js.map",
+    "static/js/3.8313535d.chunk.js": "/static/js/3.8313535d.chunk.js",
+    "static/js/3.8313535d.chunk.js.map": "/static/js/3.8313535d.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/2.0975cee1.chunk.css.map": "/static/css/2.0975cee1.chunk.css.map",
+    "static/css/main.9f34753c.chunk.css.map": "/static/css/main.9f34753c.chunk.css.map",
+    "static/js/2.ab656483.chunk.js.LICENSE.txt": "/static/js/2.ab656483.chunk.js.LICENSE.txt",
+    "static/media/GlobalStyles.css": "/static/media/IconBG.d9e19aae.png",
+    "static/media/logo-bordo.9a59480f.svg": "/static/media/logo-bordo.9a59480f.svg",
+    "static/media/EmptyView.css": "/static/media/tom-and-jerry-depressed.0990af33.gif"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.df6387cb.js",
+    "static/css/2.0975cee1.chunk.css",
+    "static/js/2.ab656483.chunk.js",
+    "static/css/main.9f34753c.chunk.css",
+    "static/js/main.e06586b1.chunk.js"
+  ]
+}
