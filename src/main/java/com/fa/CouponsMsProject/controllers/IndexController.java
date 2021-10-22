@@ -8,8 +8,8 @@ import org.springframework.web.servlet.ModelAndView;
 import static com.fa.CouponsMsProject.security.constants.SecurityConstants.ALLOWED_HEADERS;
 import static com.fa.CouponsMsProject.security.constants.SecurityConstants.ORIGINS;
 
-@RestController
-@CrossOrigin(origins = ORIGINS, allowedHeaders = ALLOWED_HEADERS)
+//@RestController
+//@CrossOrigin(origins = ORIGINS, allowedHeaders = ALLOWED_HEADERS)
 public class IndexController implements ErrorController {
 
     private static final String PATH = "/error";
