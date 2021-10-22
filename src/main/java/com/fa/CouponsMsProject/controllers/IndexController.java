@@ -14,8 +14,7 @@ public class IndexController implements ErrorController {
 
     private static final String PATH = "/error";
 
-//    @RequestMapping(value = PATH)
-    @RequestMapping(value = "/*")
+    @RequestMapping(value = PATH)
     public ModelAndView saveLeadQuery() {
         return new ModelAndView("forward:/");
     }
