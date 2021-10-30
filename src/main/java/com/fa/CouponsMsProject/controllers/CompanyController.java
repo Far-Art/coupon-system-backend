@@ -13,8 +13,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 import java.util.Map;
+
 import static com.fa.CouponsMsProject.security.constants.SecurityConstants.ALLOWED_HEADERS;
 import static com.fa.CouponsMsProject.security.constants.SecurityConstants.ORIGINS;
 
@@ -22,11 +24,11 @@ import static com.fa.CouponsMsProject.security.constants.SecurityConstants.ORIGI
 @RequestMapping("/companies")
 @RequiredArgsConstructor
 @CrossOrigin(origins = ORIGINS, allowedHeaders = ALLOWED_HEADERS)
-public class CompanyController extends ClientController{
+public class CompanyController extends ClientController {
 
     @GetMapping
     public ResponseEntity<List<Company>> getAllCompanies(@RequestHeader("authorization") String token, @RequestHeader("clientType") ClientType clientType) throws SecurityException, CustomException {
-        return new ResponseEntity<>(((AdminFacade) accessManager.getSession(token, clientType, ClientType.ADMIN)).getAllCompanies(),HttpStatus.OK);
+        return new ResponseEntity<>(((AdminFacade) accessManager.getSession(token, clientType, ClientType.ADMIN)).getAllCompanies(), HttpStatus.OK);
     }
 
     @PostMapping
