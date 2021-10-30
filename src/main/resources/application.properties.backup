@@ -1,7 +1,7 @@
 spring.datasource.url=jdbc:ec2-34-254-120-2.eu-west-1.compute.amazonaws.com?serverTimezone=UTC&createDatabaseIfNotExist=true
 
-spring.datasource.username=********
-spring.datasource.password=********
+spring.datasource.username=fudzzrcwiiphiy
+spring.datasource.password=05e72b6784a68d3b219d04dd14afda8191f0baf8de1a04520911a10797dfcf08
 spring.datasource.driver-class-name=org.postgresql.Driver
 
 spring.jpa.hibernate.ddl-auto=update
