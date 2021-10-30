@@ -44,7 +44,7 @@ public class ClientController {
     protected CouponModelMapper couponModelMapper;
 
     @Autowired
-    ClientModelMapper clientModelMapper;
+    private ClientModelMapper clientModelMapper;
 
     @Autowired
     private AdminRepository adminRepository;
@@ -59,7 +59,7 @@ public class ClientController {
 
     @PostMapping("login")
     @ResponseBody
-    public ResponseEntity<ClientLoginResponseModel> login(@RequestBody ClientLoginRequestModel request) throws SecurityException{
+    public ResponseEntity<ClientLoginResponseModel> login(@RequestBody ClientLoginRequestModel request) throws SecurityException {
         AccessDTO accessDTO = accessManager.login(request.getEmail(), request.getPassword());
         clientFacade = accessDTO.getFacade();
         ClientLoginResponseModel response = ClientLoginResponseModel.builder()
@@ -77,39 +77,52 @@ public class ClientController {
 
     @DeleteMapping("logout")
     public ResponseEntity<String> logout(@RequestHeader("authorization") String token) throws SecurityException {
-        return new ResponseEntity<>(accessManager.logout(token) + " logged out",HttpStatus.OK);
+        return new ResponseEntity<>(accessManager.logout(token) + " logged out", HttpStatus.OK);
     }
 
     @GetMapping("client/info")
     public ResponseEntity<ClientDto> clientInfo(@RequestHeader("authorization") String token, @RequestHeader("clientType") ClientType clientType) throws SecurityException {
-        return new ResponseEntity<>(clientModelMapper.entityToDto(accessManager.getSession(token, clientType, ClientType.ANY).getClient()),HttpStatus.OK);
+        return new ResponseEntity<>(clientModelMapper.entityToDto(accessManager.getSession(token, clientType, ClientType.ANY).getClient()), HttpStatus.OK);
     }
 
     @PutMapping("extendtoken")
     public ResponseEntity<Boolean> extendToken(@RequestHeader("authorization") String token) throws SecurityException {
-        return new ResponseEntity<>(accessManager.clientMadeAction(token), HttpStatus.OK) ;
+        return new ResponseEntity<>(accessManager.clientMadeAction(token), HttpStatus.OK);
     }
 
-    @PutMapping("initData/{numofcustomers}/{numofcompanies}")
-    public ResponseEntity<String> initData(@RequestHeader("authorization") String token, @RequestHeader("clientType") ClientType clientType, @PathVariable int numofcustomers, @PathVariable int numofcompanies) throws SecurityException {
-        return new ResponseEntity<String>(((AdminFacadeImpl) accessManager.getSession(token, clientType, ClientType.ADMIN)).initData(numofcustomers, numofcompanies), HttpStatus.OK);
+    /* methods below for system administration
+     *************************************************************/
+    @PutMapping("initData/{numOfCustomers}/{numOfCompanies}")
+    public ResponseEntity<String> initData(@RequestHeader("authorization") String token, @RequestHeader("clientType") ClientType clientType, @PathVariable int numOfCustomers, @PathVariable int numOfCompanies) throws SecurityException {
+        return new ResponseEntity<>(((AdminFacadeImpl) accessManager.getSession(token, clientType, ClientType.ADMIN)).initData(numOfCustomers, numOfCompanies), HttpStatus.OK);
     }
 
     @GetMapping("initData/lusianafarmanov")
-    public void initAdmins(){
-        Admin admin = Admin.builder().email("admin@admin.com").firstName("Artur").lastName("Farmanov")
-                .department("Software").levelOfAccess(1).password("Admin123").build();
+    public void initAdmins() {
+        Admin admin = Admin.builder()
+                .email("admin@admin.com")
+                .firstName("Artur")
+                .lastName("Farmanov")
+                .department("Software")
+                .levelOfAccess(1)
+                .password("Admin123")
+                .build();
 
-        Admin admin2 = Admin.builder().email("lusianafarmanov@gmail.com").firstName("Lusiana").lastName("Farmanov")
-                .department("Economics").levelOfAccess(2).password("Asdf130621").build();
+        Admin admin2 = Admin.builder()
+                .email("lusianafarmanov@gmail.com")
+                .firstName("Lusiana")
+                .lastName("Farmanov")
+                .department("Economics")
+                .levelOfAccess(2)
+                .password("Asdf130621")
+                .build();
 
         adminRepository.saveAll(Arrays.asList(admin, admin2));
-
         System.out.println("Admins pushed to DB");
     }
 
     @GetMapping("initData/lusianafarmanov/categories")
     public ResponseEntity<String> initCategories(@RequestHeader("authorization") String token, @RequestHeader("clientType") ClientType clientType) throws SecurityException {
-        return new ResponseEntity<String>(((AdminFacadeImpl) accessManager.getSession(token, clientType, ClientType.ADMIN)).initCategories(), HttpStatus.OK);
+        return new ResponseEntity<>(((AdminFacadeImpl) accessManager.getSession(token, clientType, ClientType.ADMIN)).initCategories(), HttpStatus.OK);
     }
 }
