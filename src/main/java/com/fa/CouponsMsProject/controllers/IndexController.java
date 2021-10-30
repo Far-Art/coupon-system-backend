@@ -8,6 +8,10 @@ import org.springframework.web.servlet.ModelAndView;
 import static com.fa.CouponsMsProject.security.constants.SecurityConstants.ALLOWED_HEADERS;
 import static com.fa.CouponsMsProject.security.constants.SecurityConstants.ORIGINS;
 
+/**
+ This Controller used to redirect url requests to index.html on Single Page Application
+ */
+
 @RestController
 @CrossOrigin(origins = ORIGINS, allowedHeaders = ALLOWED_HEADERS)
 public class IndexController implements ErrorController {
