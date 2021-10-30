@@ -12,7 +12,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
+
 import static com.fa.CouponsMsProject.security.constants.SecurityConstants.ALLOWED_HEADERS;
 import static com.fa.CouponsMsProject.security.constants.SecurityConstants.ORIGINS;
 
@@ -24,7 +26,7 @@ public class CustomerController extends ClientController {
 
     @GetMapping
     public ResponseEntity<List<Customer>> getAllCustomers(@RequestHeader("authorization") String token, @RequestHeader("clientType") ClientType clientType) throws SecurityException, CustomException {
-        return new ResponseEntity<>(((AdminFacade) accessManager.getSession(token, clientType, ClientType.ADMIN)).getAllCustomers(),HttpStatus.OK);
+        return new ResponseEntity<>(((AdminFacade) accessManager.getSession(token, clientType, ClientType.ADMIN)).getAllCustomers(), HttpStatus.OK);
     }
 
     @PostMapping
@@ -48,7 +50,7 @@ public class CustomerController extends ClientController {
     @PostMapping("/purchase")
     public ResponseEntity<String> buyCoupons(@RequestHeader("authorization") String token, @RequestHeader("clientType") ClientType clientType, @RequestBody List<Long> coupons) throws CustomException, SecurityException {
         int numOfPurchased = ((CustomerFacade) accessManager.getSession(token, clientType, ClientType.CUSTOMER)).buyCoupons(coupons);
-        return new ResponseEntity<>("You bought " + numOfPurchased + (numOfPurchased == 1 ? " coupon": " coupons"), HttpStatus.OK);
+        return new ResponseEntity<>("You bought " + numOfPurchased + (numOfPurchased == 1 ? " coupon" : " coupons"), HttpStatus.OK);
     }
 
     @GetMapping("/coupons")
