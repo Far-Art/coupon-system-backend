@@ -2,8 +2,8 @@
 spring:
   datasource:
     url: jdbc:mysql://localhost:3306/coupons_ms_spring?serverTimezone=UTC&createDatabaseIfNotExist=true&jdbcCompliantTruncation=false&sslmode=require
-    username: [YOUR_USERNAME]
-    password: [YOUR_PASSWORD]
+    username: DEV_USER
+    password: qwjf2674h^dk234$DEV
 
   devtools:
     restart:
@@ -12,6 +12,5 @@ spring:
   jpa:
     properties:
       hibernate:
-        ddl-auto: update
+        ddl-auto: create-drop
         show_sql: true
-

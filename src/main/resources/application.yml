@@ -22,7 +22,7 @@ spring:
     open-in-view: false # disable the Open Session in View anti-pattern, inefficient from a database perspective
 
     hibernate:
-      ddl-auto: none
+      ddl-auto: create-drop
 
     properties:
       hibernate:
