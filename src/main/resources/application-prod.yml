@@ -1,7 +1,7 @@
 
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/coupons_ms_spring?serverTimezone=UTC&createDatabaseIfNotExist=true&jdbcCompliantTruncation=false&sslmode=require
+    url: jdbc:mysql://${PROD_DB_HOST}:${PROD_DB_PORT}/${PROD_DB_NAME}?serverTimezone=UTC&createDatabaseIfNotExist=true&jdbcCompliantTruncation=false&sslmode=require
     username: ${PROD_DB_USERNAME}
     password: ${PROD_DB_PASSWORD}
 
