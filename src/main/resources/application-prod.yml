@@ -9,3 +9,6 @@ spring:
     properties:
       hibernate:
         ddl-auto: validate # validate or none will be used in real application
+
+server:
+  port: $PORT
