@@ -17,7 +17,7 @@ public class CompanyGenerator {
 
     private final ImageGeneratorApi imageGeneratorApi;
 
-    private static final int COUPONS_PER_COMPANY = 6;
+    private static final int COUPONS_PER_COMPANY = 3;
 
     private static Category companyProfile = null;
 
