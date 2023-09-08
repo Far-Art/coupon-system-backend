@@ -50,6 +50,6 @@ jackson:
 #----------------- Server config    -----------------
 server:
   error:
-  include-message: always
+    include-message: always
 
 image_folder_path: src\/main\/resources\/images\/coupons\/

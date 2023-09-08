@@ -5,7 +5,6 @@ spring:
     username: ${PROD_DB_USERNAME}
     password: ${PROD_DB_PASSWORD}
 
-
   jpa:
     properties:
       hibernate:
