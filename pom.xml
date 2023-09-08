@@ -62,12 +62,12 @@
 			</exclusions>
 		</dependency>
 		
-<!--		<dependency>-->
-<!--			<groupId>mysql</groupId>-->
-<!--			<artifactId>mysql-connector-java</artifactId>-->
-<!--			<version>8.0.28</version>-->
-<!--			<scope>runtime</scope>-->
-<!--		</dependency>-->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>8.0.28</version>
+			<scope>runtime</scope>
+		</dependency>
 
 		<dependency>
 			<groupId>org.aspectj</groupId>
@@ -92,6 +92,12 @@
 		</dependency>
 
 		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>1.5</version>
+		</dependency>
+
+		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 			<scope>runtime</scope>
@@ -102,16 +108,21 @@
 	<build>
 		<plugins>
 <!--			<plugin>-->
-<!--				<groupId>org.apache.maven.plugins</groupId>-->
-<!--				<artifactId>maven-dependency-plugin</artifactId>-->
-<!--				<version>3.0.1</version>-->
-<!--				<executions>-->
-<!--					<execution>-->
-<!--						<id>copy-dependencies</id>-->
-<!--						<phase>package</phase>-->
-<!--						<goals><goal>copy-dependencies</goal></goals>-->
-<!--					</execution>-->
-<!--				</executions>-->
+<!--				<groupId>com.heroku.sdk</groupId>-->
+<!--				<artifactId>heroku-maven-plugin</artifactId>-->
+<!--				<version>2.0.3</version>-->
+<!--				<configuration>-->
+<!--					<appName>couponsmsproject</appName>-->
+<!--					<includeTarget>false</includeTarget>-->
+<!--					<includes>-->
+<!--						<include>${project.build.directory}/${project.build.finalName}.jar</include>-->
+<!--					</includes>-->
+<!--					<jdkVersion>${java.version}</jdkVersion>-->
+<!--					<processTypes>-->
+<!--						<web>java $JAVA_OPTS -jar-->
+<!--							${project.build.directory}/${project.build.finalName}.jar</web>-->
+<!--					</processTypes>-->
+<!--				</configuration>-->
 <!--			</plugin>-->
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
