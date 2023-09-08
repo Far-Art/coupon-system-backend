@@ -17,8 +17,8 @@ spring:
     password: [YOUR_PASSWORD]
 
   jpa:
-    database: mysql
-    database-platform: org.hibernate.dialect.MySQLDialect
+#    database: mysql
+#    database-platform: org.hibernate.dialect.MySQLDialect
     open-in-view: false # disable the Open Session in View anti-pattern, inefficient from a database perspective
 
     hibernate:
@@ -26,7 +26,7 @@ spring:
 
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.MySQL5Dialect
+#        dialect: org.hibernate.dialect.MySQL5Dialect
         enable_lazy_load_no_trans: true # this is inefficient as it introduces n+1 problem
         order_inserts: true
         order_updates: true

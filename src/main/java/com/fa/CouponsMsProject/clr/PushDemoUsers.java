@@ -22,7 +22,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Order(2)
-@Profile({"dev"})
+@Profile({"dev", "prod"})
 @RequiredArgsConstructor
 public class PushDemoUsers implements CommandLineRunner {
 

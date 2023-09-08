@@ -28,7 +28,7 @@ import java.util.stream.IntStream;
 
 @Component
 @Order(3)
-@Profile({"dev"})
+@Profile({"dev", "prod"})
 @RequiredArgsConstructor
 public class PushDemoData implements CommandLineRunner {
 

@@ -1,9 +1,10 @@
 
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/coupons_ms_spring?serverTimezone=UTC&createDatabaseIfNotExist=true&jdbcCompliantTruncation=false&sslmode=require
-    username: DEV_USER
-    password: qwjf2674h^dk234$DEV
+    url: jdbc:h2:mem:coupons_ms_spring?serverTimezone=UTC&createDatabaseIfNotExist=true&jdbcCompliantTruncation=false&sslmode=require
+    username: sa
+    password: password
+    driver-class-name: org.h2.Driver
 
   devtools:
     restart:
