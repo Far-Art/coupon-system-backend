@@ -8,5 +8,5 @@ spring:
   jpa:
     properties:
       hibernate:
-        ddl-auto: create-only # validate or none will be used in real application
+        ddl-auto: validate # validate or none will be used in real application
 

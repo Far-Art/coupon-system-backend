@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Order(1)
-@Profile({"dev", "prod"})
+@Profile({"dev"})
 @RequiredArgsConstructor
 public class PushCategories implements CommandLineRunner {
 
