@@ -49,7 +49,6 @@ jackson:
 
 #----------------- Server config    -----------------
 server:
-  port: $PORT
   error:
     include-message: always
 
