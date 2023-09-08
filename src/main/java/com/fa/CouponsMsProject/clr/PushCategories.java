@@ -2,21 +2,23 @@ package com.fa.CouponsMsProject.clr;
 
 import com.fa.CouponsMsProject.repositories.CategoryRepository;
 import com.fa.CouponsMsProject.utils.CategoryToString;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Profile;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-//@Component
+@Component
 @Order(1)
-public class PushCategoriesToDB implements CommandLineRunner {
+@Profile({"dev", "prod"})
+@RequiredArgsConstructor
+public class PushCategories implements CommandLineRunner {
 
-	@Autowired
-	private CategoryRepository categoryRepository;
+	private final CategoryRepository categoryRepository;
 
 	@Override
 	public void run(String... args) {
 		categoryRepository.saveAll(CategoryToString.getAllCategories(false));
-		System.out.println("Categories Pushed to DB");
+		System.out.println("Categories pushed to DB");
 	}
 }

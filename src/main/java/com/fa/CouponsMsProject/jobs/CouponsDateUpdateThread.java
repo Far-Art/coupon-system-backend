@@ -14,15 +14,13 @@ import static com.fa.CouponsMsProject.config.ApplicationConfig.DAILY_INTERVAL;
 @RequiredArgsConstructor
 public class CouponsDateUpdateThread {
 
-    private List<Coupon> coupons;
-
     private final CouponRepository couponRepository;
 
     @Scheduled(fixedRate = DAILY_INTERVAL * 2)
     public void runDateUpdate(){
-        coupons = couponRepository.findAll();
-        for (int i = 0; i < coupons.size(); i++) {
-            updateDates(coupons.get(i));
+        List<Coupon> coupons = couponRepository.findAll();
+        for (Coupon coupon : coupons) {
+            updateDates(coupon);
         }
         couponRepository.saveAll(coupons);
     }

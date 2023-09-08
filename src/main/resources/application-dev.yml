@@ -12,5 +12,5 @@ spring:
   jpa:
     properties:
       hibernate:
-        ddl-auto: create-drop
+        ddl-auto: create-only
         show_sql: true

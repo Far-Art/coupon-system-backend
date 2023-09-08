@@ -4,19 +4,18 @@ import com.fa.CouponsMsProject.beans.Category;
 import com.fa.CouponsMsProject.beans.Company;
 import com.fa.CouponsMsProject.beans.Coupon;
 import com.fa.CouponsMsProject.utils.ImageGeneratorApi;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.Random;
 
 @Component
+@RequiredArgsConstructor
 public class CompanyGenerator {
 
-    @Autowired
-    private CouponsGenerator couponsGenerator;
+    private final CouponsGenerator couponsGenerator;
 
-    @Autowired
-    private ImageGeneratorApi imageGeneratorApi;
+    private final ImageGeneratorApi imageGeneratorApi;
 
     private static final int COUPONS_PER_COMPANY = 6;
 
