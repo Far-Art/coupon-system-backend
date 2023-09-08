@@ -4,6 +4,7 @@ spring:
     url: jdbc:h2:mem:coupons_ms_spring?serverTimezone=UTC&createDatabaseIfNotExist=true&jdbcCompliantTruncation=false&sslmode=require
     username: ${PROD_DB_USERNAME}
     password: ${PROD_DB_PASSWORD}
+    driver-class-name: org.h2.Driver
 
   jpa:
     properties:
