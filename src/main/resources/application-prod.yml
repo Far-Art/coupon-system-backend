@@ -1,12 +1,15 @@
 
 spring:
   datasource:
-    url: jdbc:h2:mem:coupons_ms_spring?serverTimezone=UTC&createDatabaseIfNotExist=true&jdbcCompliantTruncation=false&sslmode=require
+    url: jdbc:mysql://${PROD_DB_HOST}:${PROD_DB_PORT}/${PROD_DB_NAME}?serverTimezone=UTC&createDatabaseIfNotExist=true&jdbcCompliantTruncation=false&sslmode=require
     username: ${PROD_DB_USERNAME}
     password: ${PROD_DB_PASSWORD}
-    driver-class-name: org.h2.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQLDialect
     properties:
       hibernate:
-        ddl-auto: validate # validate or none will be used in real application
+        dialect: org.hibernate.dialect.MySQL5Dialect
+        ddl-auto: none # validate or none will be used in real application
