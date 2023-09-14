@@ -34,7 +34,7 @@ public class PushDemoUsers implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        if (adminRepository.count() == 0) {
+        if (!adminRepository.existsByEmail("demo@admin.com")) {
             Admin admin = Admin.builder()
                     .email("demo@admin.com")
                     .firstName("Demo")
@@ -50,7 +50,7 @@ public class PushDemoUsers implements CommandLineRunner {
             System.out.println("Demo admin present in DB");
         }
 
-        if (customerRepository.count() == 0) {
+        if (!customerRepository.existsByEmail("demo@customer.com")) {
             Customer customer = Customer.builder()
                     .email("demo@customer.com")
                     .firstName("Demo")
@@ -64,7 +64,7 @@ public class PushDemoUsers implements CommandLineRunner {
             System.out.println("Demo customer present in DB");
         }
 
-        if (companyRepository.count() == 0) {
+        if (!companyRepository.existsByEmail("demo@company.com")) {
             Company company = Company.builder()
                     .name("Demo company")
                     .isActive(true)

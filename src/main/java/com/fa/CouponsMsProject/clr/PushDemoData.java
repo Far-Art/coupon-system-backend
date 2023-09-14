@@ -42,7 +42,7 @@ public class PushDemoData implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        if (customerRepository.count() == 0) {
+        if (customerRepository.count() <= 1) {
             List<Customer> customers = IntStream.range(0, NUM_OF_CUSTOMERS).mapToObj(i -> Customer.builder().firstName(ClientNameGenerator.getName()).lastName(ClientNameGenerator.getName())
                     .email(EmailGenerator.generateEmail(ClientNameGenerator.getSameName()))
                     .password(PasswordGenerator.getPassword()).build()).collect(Collectors.toList());
@@ -52,7 +52,7 @@ public class PushDemoData implements CommandLineRunner {
             System.out.println("Customers present in DB");
         }
 
-        if (companyRepository.count() == 0) {
+        if (companyRepository.count() <= 1) {
             List<Company> companies = IntStream.range(0, NUM_OF_COMPANIES).mapToObj(i -> companyGenerator.generate()).collect(Collectors.toList());
             companyRepository.saveAll(companies);
             System.out.println("Companies pushed to DB");
