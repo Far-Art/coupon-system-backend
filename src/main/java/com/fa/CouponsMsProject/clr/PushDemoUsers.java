@@ -34,36 +34,48 @@ public class PushDemoUsers implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        Admin admin = Admin.builder()
-                .email("demo@admin.com")
-                .firstName("Demo")
-                .lastName("Admin")
-                .department("Software")
-                .levelOfAccess(1)
-                .password("Admin123")
-                .build();
+        if (adminRepository.count() == 0) {
+            Admin admin = Admin.builder()
+                    .email("demo@admin.com")
+                    .firstName("Demo")
+                    .lastName("Admin")
+                    .department("Software")
+                    .levelOfAccess(1)
+                    .password("Admin123")
+                    .build();
 
-        adminRepository.save(admin);
-        System.out.println("Demo admin pushed to DB");
+            adminRepository.save(admin);
+            System.out.println("Demo admin pushed to DB");
+        } else {
+            System.out.println("Demo admin present in DB");
+        }
 
-        Customer customer = Customer.builder()
-                .email("demo@customer.com")
-                .firstName("Demo")
-                .lastName("Customer")
-                .password("Customer123")
-                .build();
+        if (customerRepository.count() == 0) {
+            Customer customer = Customer.builder()
+                    .email("demo@customer.com")
+                    .firstName("Demo")
+                    .lastName("Customer")
+                    .password("Customer123")
+                    .build();
 
-        customerRepository.save(customer);
-        System.out.println("Demo admin pushed to DB");
+            customerRepository.save(customer);
+            System.out.println("Demo customer pushed to DB");
+        } else {
+            System.out.println("Demo customer present in DB");
+        }
 
-        Company company = Company.builder()
-                .name("Demo company")
-                .isActive(true)
-                .email("demo@company.com")
-                .password("Company123")
-                .build();
+        if (companyRepository.count() == 0) {
+            Company company = Company.builder()
+                    .name("Demo company")
+                    .isActive(true)
+                    .email("demo@company.com")
+                    .password("Company123")
+                    .build();
 
-        companyRepository.save(company);
-        System.out.println("Demo company pushed to DB");
+            companyRepository.save(company);
+            System.out.println("Demo company pushed to DB");
+        } else {
+            System.out.println("Demo company present in DB");
+        }
     }
 }

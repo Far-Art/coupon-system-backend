@@ -14,11 +14,15 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class PushCategories implements CommandLineRunner {
 
-	private final CategoryRepository categoryRepository;
+    private final CategoryRepository categoryRepository;
 
-	@Override
-	public void run(String... args) {
-		categoryRepository.saveAll(CategoryToString.getAllCategories(false));
-		System.out.println("Categories pushed to DB");
-	}
+    @Override
+    public void run(String... args) {
+        if (categoryRepository.count() == 0) {
+            categoryRepository.saveAll(CategoryToString.getAllCategories(false));
+            System.out.println("Categories pushed to DB");
+        } else {
+            System.out.println("Categories is present");
+        }
+    }
 }

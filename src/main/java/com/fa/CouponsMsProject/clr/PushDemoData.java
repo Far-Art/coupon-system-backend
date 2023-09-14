@@ -42,18 +42,24 @@ public class PushDemoData implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        System.out.println("Dummy Data being pushed to DB, this may take some while...");
+        if (customerRepository.count() == 0) {
+            List<Customer> customers = IntStream.range(0, NUM_OF_CUSTOMERS).mapToObj(i -> Customer.builder().firstName(ClientNameGenerator.getName()).lastName(ClientNameGenerator.getName())
+                    .email(EmailGenerator.generateEmail(ClientNameGenerator.getSameName()))
+                    .password(PasswordGenerator.getPassword()).build()).collect(Collectors.toList());
+            customerRepository.saveAll(customers);
+            System.out.println("Customers pushed to DB");
+        } else {
+            System.out.println("Customers present in DB");
+        }
 
-        List<Customer> customers = IntStream.range(0, NUM_OF_CUSTOMERS).mapToObj(i -> Customer.builder().firstName(ClientNameGenerator.getName()).lastName(ClientNameGenerator.getName())
-                .email(EmailGenerator.generateEmail(ClientNameGenerator.getSameName()))
-                .password(PasswordGenerator.getPassword()).build()).collect(Collectors.toList());
+        if (companyRepository.count() == 0) {
+            List<Company> companies = IntStream.range(0, NUM_OF_COMPANIES).mapToObj(i -> companyGenerator.generate()).collect(Collectors.toList());
+            companyRepository.saveAll(companies);
+            System.out.println("Companies pushed to DB");
+        } else {
+            System.out.println("Companies present in DB");
+        }
 
-        List<Company> companies = IntStream.range(0, NUM_OF_COMPANIES).mapToObj(i -> companyGenerator.generate()).collect(Collectors.toList());
-
-        customerRepository.saveAll(customers);
-        companyRepository.saveAll(companies);
-
-        System.out.println("Demo data pushed to DB");
     }
 
 }
