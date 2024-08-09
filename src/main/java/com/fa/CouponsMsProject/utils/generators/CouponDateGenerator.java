@@ -6,13 +6,15 @@ import java.util.Random;
 
 public class CouponDateGenerator {
 
-	public static Date getDate(int days, boolean isRandom, DateType type) {
+	public static Date getDate(int days, int months, int years , boolean isRandom, DateType type) {
 		Calendar time = Calendar.getInstance();
 		if (isRandom) {
 			Random randomDays = new Random();
 			days += randomDays.nextInt(3) - 2;
 		}
 		time.add(Calendar.DAY_OF_MONTH, days);
+		time.add(Calendar.MONTH, months);
+		time.add(Calendar.YEAR, years);
 
 		if (type == DateType.JAVA) {
 			return time.getTime();

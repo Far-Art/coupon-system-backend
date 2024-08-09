@@ -6,7 +6,6 @@ import com.fa.CouponsMsProject.repositories.CompanyRepository;
 import com.fa.CouponsMsProject.repositories.CouponRepository;
 import com.fa.CouponsMsProject.facades.ClientFacade;
 import com.fa.CouponsMsProject.facades.CompanyFacade;
-import com.fa.CouponsMsProject.utils.ImageGeneratorApi;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldNameConstants.Exclude;
 import org.springframework.context.annotation.Scope;
@@ -30,9 +29,6 @@ public class CompanyFacadeImpl extends ClientFacade implements CompanyFacade {
 
 	@Exclude
 	private final CompanyRepository companyRepository;
-
-	@Exclude
-	private final ImageGeneratorApi imageGeneratorApi;
 
 	@Override
 	public Client getClient() {
@@ -66,11 +62,6 @@ public class CompanyFacadeImpl extends ClientFacade implements CompanyFacade {
 		/* set company in coupon relation */
 		coupon.setCompany(company);
 
-		/* if company client set RANDOM keyword, set random image*/
-		if(coupon.getImageUrl().equals("RANDOM")){
-			coupon.setImageUrl(imageGeneratorApi.getRandomImageByCategory(700,700, "daily"));
-		}
-
 		couponRepository.save(coupon);
 	}
 
@@ -94,10 +85,6 @@ public class CompanyFacadeImpl extends ClientFacade implements CompanyFacade {
 
 		/* reset the company relation if it was changed */
 		coupon.setCompany(company);
-
-		if(coupon.getImageUrl().equals("RANDOM")){
-			coupon.setImageUrl(imageGeneratorApi.getRandomImageByCategory(700,700, "daily"));
-		}
 
 		couponRepository.save(coupon);
 	}
@@ -186,7 +173,7 @@ public class CompanyFacadeImpl extends ClientFacade implements CompanyFacade {
 			throw new CustomException("Price must start from 0");
 		} else if (coupon.getPrice() > 9999){
 			throw new CustomException("Price cannot exceed 9999");
-		} else if (coupon.getImageUrl().length() > 500 ){
+		} else if (coupon.getImage().length() > 500 ){
 			throw new CustomException("Image Url cannot exceed 500 characters");
 		}
 	}

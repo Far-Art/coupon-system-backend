@@ -28,7 +28,7 @@ public class CouponModelMapper {
                 .endDate(coupon.getEndDate())
                 .amount(coupon.getAmount())
                 .price(coupon.getPrice())
-                .imageUrl(coupon.getImageUrl())
+                .imageUrl(coupon.getImage())
                 .build();
     }
 
@@ -47,7 +47,7 @@ public class CouponModelMapper {
                 .endDate(coupon.getEndDate())
                 .amount((int)coupon.getAmount())
                 .price(coupon.getPrice())
-                .imageUrl(coupon.getImageUrl())
+                .image(coupon.getImageUrl())
                 .build();
     }
 

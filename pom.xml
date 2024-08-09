@@ -85,11 +85,11 @@
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.modelmapper/modelmapper -->
-		<dependency>
-			<groupId>org.modelmapper</groupId>
-			<artifactId>modelmapper</artifactId>
-			<version>2.4.4</version>
-		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>org.modelmapper</groupId>-->
+<!--			<artifactId>modelmapper</artifactId>-->
+<!--			<version>2.4.4</version>-->
+<!--		</dependency>-->
 
 		<dependency>
 			<groupId>commons-fileupload</groupId>
@@ -107,23 +107,6 @@
 
 	<build>
 		<plugins>
-<!--			<plugin>-->
-<!--				<groupId>com.heroku.sdk</groupId>-->
-<!--				<artifactId>heroku-maven-plugin</artifactId>-->
-<!--				<version>2.0.3</version>-->
-<!--				<configuration>-->
-<!--					<appName>couponsmsproject</appName>-->
-<!--					<includeTarget>false</includeTarget>-->
-<!--					<includes>-->
-<!--						<include>${project.build.directory}/${project.build.finalName}.jar</include>-->
-<!--					</includes>-->
-<!--					<jdkVersion>${java.version}</jdkVersion>-->
-<!--					<processTypes>-->
-<!--						<web>java $JAVA_OPTS -jar-->
-<!--							${project.build.directory}/${project.build.finalName}.jar</web>-->
-<!--					</processTypes>-->
-<!--				</configuration>-->
-<!--			</plugin>-->
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>

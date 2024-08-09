@@ -33,7 +33,7 @@ import java.util.stream.IntStream;
 public class PushDemoData implements CommandLineRunner {
 
     private static final int NUM_OF_CUSTOMERS = 2;
-    private static final int NUM_OF_COMPANIES = 5;
+    private static final int NUM_OF_COMPANIES = 7;
 
     private final CompanyGenerator companyGenerator;
 

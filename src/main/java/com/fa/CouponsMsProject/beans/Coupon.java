@@ -34,9 +34,10 @@ public class Coupon {
 	private Date endDate;
 	private int amount;
 	private double price;
+	private boolean isSaleEnded;
 
-	@Column(length = 500)
-	private String imageUrl;
+	@Column(length = 800)
+	private String image;
 
 	@ManyToMany
 	@JoinTable(name = "customers_coupons", joinColumns = @JoinColumn(name = "coupon_id"), inverseJoinColumns = @JoinColumn(name = "customer_id"))
