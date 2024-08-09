@@ -14,7 +14,7 @@ public class CompanyGenerator {
 
     private final CouponsGenerator couponsGenerator;
 
-    private static final int COUPONS_PER_COMPANY = 3;
+    private static final int COUPONS_PER_COMPANY = 5;
 
     private static Category companyProfile = null;
 
